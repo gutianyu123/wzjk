@@ -1,0 +1,13 @@
+server:
+  tomcat:
+    max-http-post-size: -1
+  session-timeout: 7200
+  port: 1111
+
+spring:
+  profiles:
+    active: dev
+
+mybatis:
+  mapperLocations: classpath:/mybatis/mapper/*Mapper.xml
+  typeAliasesPackage: com.wzjk.entity
