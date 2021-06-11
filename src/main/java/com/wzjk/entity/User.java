@@ -1,155 +1,61 @@
 package com.wzjk.entity;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.experimental.Accessors;
+
 import java.util.Date;
 
+@Data
+@EqualsAndHashCode(callSuper = false)
+@Accessors(chain = true)
+@ApiModel(value="user",description= "用户表")
 public class User {
+
+    @ApiModelProperty(value = "用户ID")
     private Integer id;
 
+    @ApiModelProperty(value = "手机号")
     private String sjh;
 
+    @ApiModelProperty(value = "工号")
     private String gh;
 
+    @ApiModelProperty(value = "邮箱")
     private String yx;
 
+    @ApiModelProperty(value = "密码")
     private String mm;
 
+    @ApiModelProperty(value = "企业ID")
     private Integer qyid;
 
+    @ApiModelProperty(value = "头像")
     private String tx;
 
+    @ApiModelProperty(value = "昵称")
     private String nc;
 
+    @ApiModelProperty(value = "姓名")
     private String xm;
 
+    @ApiModelProperty(value = "出身日期")
     private Date csrq;
 
+    @ApiModelProperty(value = "性别 1-男 2-女")
     private Integer xb;
 
+    @ApiModelProperty(value = "婚否 1-已婚 2-未婚")
     private Integer hf;
 
+    @ApiModelProperty(value = "组织id")
     private Integer zzid;
 
+    @ApiModelProperty(value = "状态 1-启用 2-停用")
     private Integer zt;
 
+    @ApiModelProperty(value = "微信号")
     private String wxh;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getSjh() {
-        return sjh;
-    }
-
-    public void setSjh(String sjh) {
-        this.sjh = sjh == null ? null : sjh.trim();
-    }
-
-    public String getGh() {
-        return gh;
-    }
-
-    public void setGh(String gh) {
-        this.gh = gh == null ? null : gh.trim();
-    }
-
-    public String getYx() {
-        return yx;
-    }
-
-    public void setYx(String yx) {
-        this.yx = yx == null ? null : yx.trim();
-    }
-
-    public String getMm() {
-        return mm;
-    }
-
-    public void setMm(String mm) {
-        this.mm = mm == null ? null : mm.trim();
-    }
-
-    public Integer getQyid() {
-        return qyid;
-    }
-
-    public void setQyid(Integer qyid) {
-        this.qyid = qyid;
-    }
-
-    public String getTx() {
-        return tx;
-    }
-
-    public void setTx(String tx) {
-        this.tx = tx == null ? null : tx.trim();
-    }
-
-    public String getNc() {
-        return nc;
-    }
-
-    public void setNc(String nc) {
-        this.nc = nc == null ? null : nc.trim();
-    }
-
-    public String getXm() {
-        return xm;
-    }
-
-    public void setXm(String xm) {
-        this.xm = xm == null ? null : xm.trim();
-    }
-
-    public Date getCsrq() {
-        return csrq;
-    }
-
-    public void setCsrq(Date csrq) {
-        this.csrq = csrq;
-    }
-
-    public Integer getXb() {
-        return xb;
-    }
-
-    public void setXb(Integer xb) {
-        this.xb = xb;
-    }
-
-    public Integer getHf() {
-        return hf;
-    }
-
-    public void setHf(Integer hf) {
-        this.hf = hf;
-    }
-
-    public Integer getZzid() {
-        return zzid;
-    }
-
-    public void setZzid(Integer zzid) {
-        this.zzid = zzid;
-    }
-
-    public Integer getZt() {
-        return zt;
-    }
-
-    public void setZt(Integer zt) {
-        this.zt = zt;
-    }
-
-    public String getWxh() {
-        return wxh;
-    }
-
-    public void setWxh(String wxh) {
-        this.wxh = wxh == null ? null : wxh.trim();
-    }
 }

@@ -7,21 +7,14 @@
     <result column="tp" jdbcType="VARCHAR" property="tp" />
     <result column="xj" jdbcType="VARCHAR" property="xj" />
     <result column="sj" jdbcType="TIMESTAMP" property="sj" />
-  </resultMap>
-  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.wzjk.entity.Knowledge">
     <result column="nr" jdbcType="LONGVARCHAR" property="nr" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, bt, tp, xj, sj
+    id, bt, tp, xj, sj, nr
   </sql>
-  <sql id="Blob_Column_List">
-    nr
-  </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
     from tb_knowledge
     where id = #{id,jdbcType=INTEGER}
   </select>
@@ -99,21 +92,13 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.wzjk.entity.Knowledge">
+  <update id="updateByPrimaryKey" parameterType="com.wzjk.entity.Knowledge">
     update tb_knowledge
     set bt = #{bt,jdbcType=VARCHAR},
       tp = #{tp,jdbcType=VARCHAR},
       xj = #{xj,jdbcType=VARCHAR},
       sj = #{sj,jdbcType=TIMESTAMP},
       nr = #{nr,jdbcType=LONGVARCHAR}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.wzjk.entity.Knowledge">
-    update tb_knowledge
-    set bt = #{bt,jdbcType=VARCHAR},
-      tp = #{tp,jdbcType=VARCHAR},
-      xj = #{xj,jdbcType=VARCHAR},
-      sj = #{sj,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

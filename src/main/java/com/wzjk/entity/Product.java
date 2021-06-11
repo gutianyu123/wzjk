@@ -1,63 +1,33 @@
 package com.wzjk.entity;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.experimental.Accessors;
+
+@Data
+@EqualsAndHashCode(callSuper = false)
+@Accessors(chain = true)
+@ApiModel(value="product",description= "产品表")
 public class Product {
+
+    @ApiModelProperty(value = "产品ID")
     private Integer id;
 
+    @ApiModelProperty(value = "图片")
     private String tp;
 
+    @ApiModelProperty(value = "名称")
     private String mc;
 
+    @ApiModelProperty(value = "标题")
     private String bt;
 
+    @ApiModelProperty(value = "评分")
     private String pf;
 
+    @ApiModelProperty(value = "内容")
     private String nr;
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getTp() {
-        return tp;
-    }
-
-    public void setTp(String tp) {
-        this.tp = tp == null ? null : tp.trim();
-    }
-
-    public String getMc() {
-        return mc;
-    }
-
-    public void setMc(String mc) {
-        this.mc = mc == null ? null : mc.trim();
-    }
-
-    public String getBt() {
-        return bt;
-    }
-
-    public void setBt(String bt) {
-        this.bt = bt == null ? null : bt.trim();
-    }
-
-    public String getPf() {
-        return pf;
-    }
-
-    public void setPf(String pf) {
-        this.pf = pf == null ? null : pf.trim();
-    }
-
-    public String getNr() {
-        return nr;
-    }
-
-    public void setNr(String nr) {
-        this.nr = nr == null ? null : nr.trim();
-    }
 }
