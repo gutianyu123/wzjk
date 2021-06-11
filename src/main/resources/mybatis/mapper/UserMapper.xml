@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wzjk.mapper.UserMapper">
+  <resultMap id="BaseResultMap" type="com.wzjk.entity.User">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="sjh" jdbcType="VARCHAR" property="sjh" />
+    <result column="gh" jdbcType="VARCHAR" property="gh" />
+    <result column="yx" jdbcType="VARCHAR" property="yx" />
+    <result column="mm" jdbcType="VARCHAR" property="mm" />
+    <result column="qyid" jdbcType="INTEGER" property="qyid" />
+    <result column="tx" jdbcType="VARCHAR" property="tx" />
+    <result column="nc" jdbcType="VARCHAR" property="nc" />
+    <result column="xm" jdbcType="VARCHAR" property="xm" />
+    <result column="csrq" jdbcType="TIMESTAMP" property="csrq" />
+    <result column="xb" jdbcType="INTEGER" property="xb" />
+    <result column="hf" jdbcType="INTEGER" property="hf" />
+    <result column="zzid" jdbcType="INTEGER" property="zzid" />
+    <result column="zt" jdbcType="INTEGER" property="zt" />
+    <result column="wxh" jdbcType="VARCHAR" property="wxh" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, sjh, gh, yx, mm, qyid, tx, nc, xm, csrq, xb, hf, zzid, zt, wxh
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_user
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tb_user
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.wzjk.entity.User">
+    insert into tb_user (id, sjh, gh, 
+      yx, mm, qyid, tx, 
+      nc, xm, csrq, xb, 
+      hf, zzid, zt, wxh
+      )
+    values (#{id,jdbcType=INTEGER}, #{sjh,jdbcType=VARCHAR}, #{gh,jdbcType=VARCHAR}, 
+      #{yx,jdbcType=VARCHAR}, #{mm,jdbcType=VARCHAR}, #{qyid,jdbcType=INTEGER}, #{tx,jdbcType=VARCHAR}, 
+      #{nc,jdbcType=VARCHAR}, #{xm,jdbcType=VARCHAR}, #{csrq,jdbcType=TIMESTAMP}, #{xb,jdbcType=INTEGER}, 
+      #{hf,jdbcType=INTEGER}, #{zzid,jdbcType=INTEGER}, #{zt,jdbcType=INTEGER}, #{wxh,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.wzjk.entity.User">
+    insert into tb_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="sjh != null">
+        sjh,
+      </if>
+      <if test="gh != null">
+        gh,
+      </if>
+      <if test="yx != null">
+        yx,
+      </if>
+      <if test="mm != null">
+        mm,
+      </if>
+      <if test="qyid != null">
+        qyid,
+      </if>
+      <if test="tx != null">
+        tx,
+      </if>
+      <if test="nc != null">
+        nc,
+      </if>
+      <if test="xm != null">
+        xm,
+      </if>
+      <if test="csrq != null">
+        csrq,
+      </if>
+      <if test="xb != null">
+        xb,
+      </if>
+      <if test="hf != null">
+        hf,
+      </if>
+      <if test="zzid != null">
+        zzid,
+      </if>
+      <if test="zt != null">
+        zt,
+      </if>
+      <if test="wxh != null">
+        wxh,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="sjh != null">
+        #{sjh,jdbcType=VARCHAR},
+      </if>
+      <if test="gh != null">
+        #{gh,jdbcType=VARCHAR},
+      </if>
+      <if test="yx != null">
+        #{yx,jdbcType=VARCHAR},
+      </if>
+      <if test="mm != null">
+        #{mm,jdbcType=VARCHAR},
+      </if>
+      <if test="qyid != null">
+        #{qyid,jdbcType=INTEGER},
+      </if>
+      <if test="tx != null">
+        #{tx,jdbcType=VARCHAR},
+      </if>
+      <if test="nc != null">
+        #{nc,jdbcType=VARCHAR},
+      </if>
+      <if test="xm != null">
+        #{xm,jdbcType=VARCHAR},
+      </if>
+      <if test="csrq != null">
+        #{csrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="xb != null">
+        #{xb,jdbcType=INTEGER},
+      </if>
+      <if test="hf != null">
+        #{hf,jdbcType=INTEGER},
+      </if>
+      <if test="zzid != null">
+        #{zzid,jdbcType=INTEGER},
+      </if>
+      <if test="zt != null">
+        #{zt,jdbcType=INTEGER},
+      </if>
+      <if test="wxh != null">
+        #{wxh,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wzjk.entity.User">
+    update tb_user
+    <set>
+      <if test="sjh != null">
+        sjh = #{sjh,jdbcType=VARCHAR},
+      </if>
+      <if test="gh != null">
+        gh = #{gh,jdbcType=VARCHAR},
+      </if>
+      <if test="yx != null">
+        yx = #{yx,jdbcType=VARCHAR},
+      </if>
+      <if test="mm != null">
+        mm = #{mm,jdbcType=VARCHAR},
+      </if>
+      <if test="qyid != null">
+        qyid = #{qyid,jdbcType=INTEGER},
+      </if>
+      <if test="tx != null">
+        tx = #{tx,jdbcType=VARCHAR},
+      </if>
+      <if test="nc != null">
+        nc = #{nc,jdbcType=VARCHAR},
+      </if>
+      <if test="xm != null">
+        xm = #{xm,jdbcType=VARCHAR},
+      </if>
+      <if test="csrq != null">
+        csrq = #{csrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="xb != null">
+        xb = #{xb,jdbcType=INTEGER},
+      </if>
+      <if test="hf != null">
+        hf = #{hf,jdbcType=INTEGER},
+      </if>
+      <if test="zzid != null">
+        zzid = #{zzid,jdbcType=INTEGER},
+      </if>
+      <if test="zt != null">
+        zt = #{zt,jdbcType=INTEGER},
+      </if>
+      <if test="wxh != null">
+        wxh = #{wxh,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wzjk.entity.User">
+    update tb_user
+    set sjh = #{sjh,jdbcType=VARCHAR},
+      gh = #{gh,jdbcType=VARCHAR},
+      yx = #{yx,jdbcType=VARCHAR},
+      mm = #{mm,jdbcType=VARCHAR},
+      qyid = #{qyid,jdbcType=INTEGER},
+      tx = #{tx,jdbcType=VARCHAR},
+      nc = #{nc,jdbcType=VARCHAR},
+      xm = #{xm,jdbcType=VARCHAR},
+      csrq = #{csrq,jdbcType=TIMESTAMP},
+      xb = #{xb,jdbcType=INTEGER},
+      hf = #{hf,jdbcType=INTEGER},
+      zzid = #{zzid,jdbcType=INTEGER},
+      zt = #{zt,jdbcType=INTEGER},
+      wxh = #{wxh,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

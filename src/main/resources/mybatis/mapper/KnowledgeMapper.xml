@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wzjk.mapper.KnowledgeMapper">
+  <resultMap id="BaseResultMap" type="com.wzjk.entity.Knowledge">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="bt" jdbcType="VARCHAR" property="bt" />
+    <result column="tp" jdbcType="VARCHAR" property="tp" />
+    <result column="xj" jdbcType="VARCHAR" property="xj" />
+    <result column="sj" jdbcType="TIMESTAMP" property="sj" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.wzjk.entity.Knowledge">
+    <result column="nr" jdbcType="LONGVARCHAR" property="nr" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, bt, tp, xj, sj
+  </sql>
+  <sql id="Blob_Column_List">
+    nr
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from tb_knowledge
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tb_knowledge
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.wzjk.entity.Knowledge">
+    insert into tb_knowledge (id, bt, tp, xj, 
+      sj, nr)
+    values (#{id,jdbcType=INTEGER}, #{bt,jdbcType=VARCHAR}, #{tp,jdbcType=VARCHAR}, #{xj,jdbcType=VARCHAR}, 
+      #{sj,jdbcType=TIMESTAMP}, #{nr,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wzjk.entity.Knowledge">
+    insert into tb_knowledge
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="bt != null">
+        bt,
+      </if>
+      <if test="tp != null">
+        tp,
+      </if>
+      <if test="xj != null">
+        xj,
+      </if>
+      <if test="sj != null">
+        sj,
+      </if>
+      <if test="nr != null">
+        nr,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="bt != null">
+        #{bt,jdbcType=VARCHAR},
+      </if>
+      <if test="tp != null">
+        #{tp,jdbcType=VARCHAR},
+      </if>
+      <if test="xj != null">
+        #{xj,jdbcType=VARCHAR},
+      </if>
+      <if test="sj != null">
+        #{sj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="nr != null">
+        #{nr,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wzjk.entity.Knowledge">
+    update tb_knowledge
+    <set>
+      <if test="bt != null">
+        bt = #{bt,jdbcType=VARCHAR},
+      </if>
+      <if test="tp != null">
+        tp = #{tp,jdbcType=VARCHAR},
+      </if>
+      <if test="xj != null">
+        xj = #{xj,jdbcType=VARCHAR},
+      </if>
+      <if test="sj != null">
+        sj = #{sj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="nr != null">
+        nr = #{nr,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.wzjk.entity.Knowledge">
+    update tb_knowledge
+    set bt = #{bt,jdbcType=VARCHAR},
+      tp = #{tp,jdbcType=VARCHAR},
+      xj = #{xj,jdbcType=VARCHAR},
+      sj = #{sj,jdbcType=TIMESTAMP},
+      nr = #{nr,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wzjk.entity.Knowledge">
+    update tb_knowledge
+    set bt = #{bt,jdbcType=VARCHAR},
+      tp = #{tp,jdbcType=VARCHAR},
+      xj = #{xj,jdbcType=VARCHAR},
+      sj = #{sj,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

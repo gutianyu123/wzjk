@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wzjk.mapper.CompanyMapper">
+  <resultMap id="BaseResultMap" type="com.wzjk.entity.Company">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="qymc" jdbcType="VARCHAR" property="qymc" />
+    <result column="qyyqm" jdbcType="VARCHAR" property="qyyqm" />
+    <result column="qykh" jdbcType="VARCHAR" property="qykh" />
+    <result column="lxfs" jdbcType="VARCHAR" property="lxfs" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, qymc, qyyqm, qykh, lxfs
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_company
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tb_company
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.wzjk.entity.Company">
+    insert into tb_company (id, qymc, qyyqm, 
+      qykh, lxfs)
+    values (#{id,jdbcType=INTEGER}, #{qymc,jdbcType=VARCHAR}, #{qyyqm,jdbcType=VARCHAR}, 
+      #{qykh,jdbcType=VARCHAR}, #{lxfs,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wzjk.entity.Company">
+    insert into tb_company
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="qymc != null">
+        qymc,
+      </if>
+      <if test="qyyqm != null">
+        qyyqm,
+      </if>
+      <if test="qykh != null">
+        qykh,
+      </if>
+      <if test="lxfs != null">
+        lxfs,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="qymc != null">
+        #{qymc,jdbcType=VARCHAR},
+      </if>
+      <if test="qyyqm != null">
+        #{qyyqm,jdbcType=VARCHAR},
+      </if>
+      <if test="qykh != null">
+        #{qykh,jdbcType=VARCHAR},
+      </if>
+      <if test="lxfs != null">
+        #{lxfs,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wzjk.entity.Company">
+    update tb_company
+    <set>
+      <if test="qymc != null">
+        qymc = #{qymc,jdbcType=VARCHAR},
+      </if>
+      <if test="qyyqm != null">
+        qyyqm = #{qyyqm,jdbcType=VARCHAR},
+      </if>
+      <if test="qykh != null">
+        qykh = #{qykh,jdbcType=VARCHAR},
+      </if>
+      <if test="lxfs != null">
+        lxfs = #{lxfs,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wzjk.entity.Company">
+    update tb_company
+    set qymc = #{qymc,jdbcType=VARCHAR},
+      qyyqm = #{qyyqm,jdbcType=VARCHAR},
+      qykh = #{qykh,jdbcType=VARCHAR},
+      lxfs = #{lxfs,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

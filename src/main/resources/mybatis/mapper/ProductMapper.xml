@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wzjk.mapper.ProductMapper">
+  <resultMap id="BaseResultMap" type="com.wzjk.entity.Product">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="tp" jdbcType="VARCHAR" property="tp" />
+    <result column="mc" jdbcType="VARCHAR" property="mc" />
+    <result column="bt" jdbcType="VARCHAR" property="bt" />
+    <result column="pf" jdbcType="VARCHAR" property="pf" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.wzjk.entity.Product">
+    <result column="nr" jdbcType="LONGVARCHAR" property="nr" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, tp, mc, bt, pf
+  </sql>
+  <sql id="Blob_Column_List">
+    nr
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from tb_product
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tb_product
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.wzjk.entity.Product">
+    insert into tb_product (id, tp, mc, bt, 
+      pf, nr)
+    values (#{id,jdbcType=INTEGER}, #{tp,jdbcType=VARCHAR}, #{mc,jdbcType=VARCHAR}, #{bt,jdbcType=VARCHAR}, 
+      #{pf,jdbcType=VARCHAR}, #{nr,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wzjk.entity.Product">
+    insert into tb_product
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="tp != null">
+        tp,
+      </if>
+      <if test="mc != null">
+        mc,
+      </if>
+      <if test="bt != null">
+        bt,
+      </if>
+      <if test="pf != null">
+        pf,
+      </if>
+      <if test="nr != null">
+        nr,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="tp != null">
+        #{tp,jdbcType=VARCHAR},
+      </if>
+      <if test="mc != null">
+        #{mc,jdbcType=VARCHAR},
+      </if>
+      <if test="bt != null">
+        #{bt,jdbcType=VARCHAR},
+      </if>
+      <if test="pf != null">
+        #{pf,jdbcType=VARCHAR},
+      </if>
+      <if test="nr != null">
+        #{nr,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wzjk.entity.Product">
+    update tb_product
+    <set>
+      <if test="tp != null">
+        tp = #{tp,jdbcType=VARCHAR},
+      </if>
+      <if test="mc != null">
+        mc = #{mc,jdbcType=VARCHAR},
+      </if>
+      <if test="bt != null">
+        bt = #{bt,jdbcType=VARCHAR},
+      </if>
+      <if test="pf != null">
+        pf = #{pf,jdbcType=VARCHAR},
+      </if>
+      <if test="nr != null">
+        nr = #{nr,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.wzjk.entity.Product">
+    update tb_product
+    set tp = #{tp,jdbcType=VARCHAR},
+      mc = #{mc,jdbcType=VARCHAR},
+      bt = #{bt,jdbcType=VARCHAR},
+      pf = #{pf,jdbcType=VARCHAR},
+      nr = #{nr,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wzjk.entity.Product">
+    update tb_product
+    set tp = #{tp,jdbcType=VARCHAR},
+      mc = #{mc,jdbcType=VARCHAR},
+      bt = #{bt,jdbcType=VARCHAR},
+      pf = #{pf,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

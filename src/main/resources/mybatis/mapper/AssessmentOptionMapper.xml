@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wzjk.mapper.AssessmentOptionMapper">
+  <resultMap id="BaseResultMap" type="com.wzjk.entity.AssessmentOption">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="pgld" jdbcType="INTEGER" property="pgld" />
+    <result column="xxmr" jdbcType="VARCHAR" property="xxmr" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, pgld, xxmr
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_assessment_option
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tb_assessment_option
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.wzjk.entity.AssessmentOption">
+    insert into tb_assessment_option (id, pgld, xxmr
+      )
+    values (#{id,jdbcType=INTEGER}, #{pgld,jdbcType=INTEGER}, #{xxmr,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.wzjk.entity.AssessmentOption">
+    insert into tb_assessment_option
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="pgld != null">
+        pgld,
+      </if>
+      <if test="xxmr != null">
+        xxmr,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="pgld != null">
+        #{pgld,jdbcType=INTEGER},
+      </if>
+      <if test="xxmr != null">
+        #{xxmr,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wzjk.entity.AssessmentOption">
+    update tb_assessment_option
+    <set>
+      <if test="pgld != null">
+        pgld = #{pgld,jdbcType=INTEGER},
+      </if>
+      <if test="xxmr != null">
+        xxmr = #{xxmr,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wzjk.entity.AssessmentOption">
+    update tb_assessment_option
+    set pgld = #{pgld,jdbcType=INTEGER},
+      xxmr = #{xxmr,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

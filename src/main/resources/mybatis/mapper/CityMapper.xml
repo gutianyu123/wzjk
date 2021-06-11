@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wzjk.mapper.CityMapper">
+  <resultMap id="BaseResultMap" type="com.wzjk.entity.City">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="zzmc" jdbcType="VARCHAR" property="zzmc" />
+    <result column="sjzz" jdbcType="INTEGER" property="sjzz" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, zzmc, sjzz
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_city
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tb_city
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.wzjk.entity.City">
+    insert into tb_city (id, zzmc, sjzz
+      )
+    values (#{id,jdbcType=INTEGER}, #{zzmc,jdbcType=VARCHAR}, #{sjzz,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.wzjk.entity.City">
+    insert into tb_city
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="zzmc != null">
+        zzmc,
+      </if>
+      <if test="sjzz != null">
+        sjzz,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="zzmc != null">
+        #{zzmc,jdbcType=VARCHAR},
+      </if>
+      <if test="sjzz != null">
+        #{sjzz,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wzjk.entity.City">
+    update tb_city
+    <set>
+      <if test="zzmc != null">
+        zzmc = #{zzmc,jdbcType=VARCHAR},
+      </if>
+      <if test="sjzz != null">
+        sjzz = #{sjzz,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wzjk.entity.City">
+    update tb_city
+    set zzmc = #{zzmc,jdbcType=VARCHAR},
+      sjzz = #{sjzz,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
