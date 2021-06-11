@@ -24,5 +24,6 @@ public class BucketController {
     @PostMapping(value = "/selectBucketPage")
     public ResultDto<PageInfo<BucketResp>> selectBucketPage(@RequestBody BucketReq bucketReq) {
         return bucketService.selectBucketPage(bucketReq);
+
     }
 }
