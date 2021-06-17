@@ -1,6 +1,7 @@
 package com.wzjk.mapper;
 
 import com.wzjk.entity.Company;
+import org.apache.ibatis.annotations.Param;
 
 public interface CompanyMapper {
     int deleteByPrimaryKey(Integer id);
@@ -15,5 +16,5 @@ public interface CompanyMapper {
 
     int updateByPrimaryKey(Company record);
 
-    Company selectByQyyqm(String qyyqm);
+    Company selectByQyyqm(@Param("qyyqm") String qyyqm);
 }

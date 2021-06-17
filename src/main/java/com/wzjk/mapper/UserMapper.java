@@ -20,5 +20,5 @@ public interface UserMapper {
 
     User selectByWxhOrSjh(@Param("wxh") String wxh, @Param("sjh") String sjh);
 
-    User selectBySjh(String sjh);
+    User selectBySjh(@Param("sjh") String sjh);
 }
