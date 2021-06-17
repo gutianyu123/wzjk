@@ -19,4 +19,6 @@ public interface UserMapper {
     User selectByLoginName(@Param("loginName") String loginName);
 
     User selectByWxhOrSjh(@Param("wxh") String wxh, @Param("sjh") String sjh);
+
+    User selectBySjh(String sjh);
 }

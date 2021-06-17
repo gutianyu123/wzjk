@@ -226,4 +226,11 @@
     where (wxh = #{wxh} or sjh = #{sjh}) and zt = 1
   </select>
 
+  <select id="selectBySjh" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from tb_user
+    where sjh = #{sjh} and zt = 1
+  </select>
+
 </mapper>

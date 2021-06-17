@@ -21,5 +21,4 @@ public class LoginReq extends User {
 
     @ApiModelProperty(value = "手机号")
     private String sjh;
-
 }
