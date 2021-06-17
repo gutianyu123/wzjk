@@ -1,6 +1,9 @@
 package com.wzjk.mapper;
 
 import com.wzjk.entity.KnowledgeType;
+import com.wzjk.response.KnowledgeTypeResp;
+
+import java.util.List;
 
 public interface KnowledgeTypeMapper {
     int deleteByPrimaryKey(Integer id);
@@ -14,4 +17,6 @@ public interface KnowledgeTypeMapper {
     int updateByPrimaryKeySelective(KnowledgeType record);
 
     int updateByPrimaryKey(KnowledgeType record);
+
+    List<KnowledgeTypeResp> selectKnowledgeTypeList();
 }

@@ -31,4 +31,7 @@ public class Knowledge {
 
     @ApiModelProperty(value = "内容")
     private String nr;
+
+    @ApiModelProperty(value = "类别id")
+    private Integer lbid;
 }

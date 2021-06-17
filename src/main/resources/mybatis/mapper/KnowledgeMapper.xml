@@ -8,9 +8,10 @@
     <result column="xj" jdbcType="VARCHAR" property="xj" />
     <result column="sj" jdbcType="TIMESTAMP" property="sj" />
     <result column="nr" jdbcType="LONGVARCHAR" property="nr" />
+    <result column="lbid" jdbcType="INTEGER" property="lbid" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, bt, tp, xj, sj, nr
+    id, bt, tp, xj, sj, nr, lbid
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -18,15 +19,24 @@
     from tb_knowledge
     where id = #{id,jdbcType=INTEGER}
   </select>
+
+  <select id="selectKnowledgePage" resultType="com.wzjk.response.KnowledgeResp">
+    select
+    <include refid="Base_Column_List" />
+    from tb_knowledge
+    where lbid = #{lbid,jdbcType=INTEGER}
+    order by sj desc
+  </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from tb_knowledge
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.wzjk.entity.Knowledge">
     insert into tb_knowledge (id, bt, tp, xj, 
-      sj, nr)
+      sj, nr, lbid)
     values (#{id,jdbcType=INTEGER}, #{bt,jdbcType=VARCHAR}, #{tp,jdbcType=VARCHAR}, #{xj,jdbcType=VARCHAR}, 
-      #{sj,jdbcType=TIMESTAMP}, #{nr,jdbcType=LONGVARCHAR})
+      #{sj,jdbcType=TIMESTAMP}, #{nr,jdbcType=LONGVARCHAR}, #{lbid,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.wzjk.entity.Knowledge">
     insert into tb_knowledge
@@ -49,6 +59,9 @@
       <if test="nr != null">
         nr,
       </if>
+      <if test="lbid != null">
+        lbid,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -68,6 +81,9 @@
       </if>
       <if test="nr != null">
         #{nr,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="lbid != null">
+        #{lbid,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -89,6 +105,9 @@
       <if test="nr != null">
         nr = #{nr,jdbcType=LONGVARCHAR},
       </if>
+      <if test="lbid != null">
+        lbid = #{lbid,jdbcType=INTEGER},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -98,7 +117,8 @@
       tp = #{tp,jdbcType=VARCHAR},
       xj = #{xj,jdbcType=VARCHAR},
       sj = #{sj,jdbcType=TIMESTAMP},
-      nr = #{nr,jdbcType=LONGVARCHAR}
+      nr = #{nr,jdbcType=LONGVARCHAR},
+      lbid = #{lbid,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

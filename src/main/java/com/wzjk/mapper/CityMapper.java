@@ -1,6 +1,9 @@
 package com.wzjk.mapper;
 
 import com.wzjk.entity.City;
+import com.wzjk.response.CityResp;
+
+import java.util.List;
 
 public interface CityMapper {
     int deleteByPrimaryKey(Integer id);
@@ -14,4 +17,6 @@ public interface CityMapper {
     int updateByPrimaryKeySelective(City record);
 
     int updateByPrimaryKey(City record);
+
+    List<CityResp> selectCity();
 }

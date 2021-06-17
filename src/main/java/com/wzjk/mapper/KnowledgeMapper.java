@@ -1,6 +1,10 @@
 package com.wzjk.mapper;
 
 import com.wzjk.entity.Knowledge;
+import com.wzjk.request.KnowledgeReq;
+import com.wzjk.response.KnowledgeResp;
+
+import java.util.List;
 
 public interface KnowledgeMapper {
     int deleteByPrimaryKey(Integer id);
@@ -14,4 +18,6 @@ public interface KnowledgeMapper {
     int updateByPrimaryKeySelective(Knowledge record);
 
     int updateByPrimaryKey(Knowledge record);
+
+    List<KnowledgeResp> selectKnowledgePage(KnowledgeReq knowledgeReq);
 }
