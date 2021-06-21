@@ -6,15 +6,15 @@ import com.wzjk.request.UserReq;
 import com.wzjk.utils.ResultDto;
 
 public interface UserService {
-    ResultDto<User> zhLogin(LoginReq loginReq);
+    ResultDto<User> zhLogin(String loginName,String mm);
 
-    ResultDto<User> wxLogin(LoginReq loginReq);
+    ResultDto<User> wxLogin(String wxh,String sjh);
 
-    ResultDto<User> sjyzLogin(LoginReq loginReq);
+    ResultDto<User> sjyzLogin(String sjh);
 
     ResultDto<User> wxsqRegist(UserReq userReq);
 
-    ResultDto<Integer> reSetMm(User user);
+    ResultDto<Integer> reSetMm(String sjh,String mm,Integer id);
 
     ResultDto<User> updateManInfor(User user);
 

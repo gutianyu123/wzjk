@@ -11,7 +11,6 @@ import com.wzjk.utils.RestResult;
 import com.wzjk.utils.ResultDto;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -23,11 +22,11 @@ public class UserServiceImpl implements UserService {
     private CompanyMapper companyMapper;
 
     @Override
-    public ResultDto<User> zhLogin(LoginReq loginReq) {
-        if (loginReq != null) {
-            User us = userMapper.selectByLoginName(loginReq.getLoginName());
+    public ResultDto<User> zhLogin(String loginName,String mm) {
+        if (loginName != null && mm != null) {
+            User us = userMapper.selectByLoginName(loginName);
             if (us != null) {
-                if (loginReq.getMm().equals(us.getMm())) {
+                if (mm.equals(us.getMm())) {
                     return  RestResult.getSuccessResult(us);
                 }
                 return RestResult.getFailResult("用户密码不正确");
@@ -38,9 +37,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public ResultDto<User> wxLogin(LoginReq loginReq) {
-        if (loginReq != null) {
-            User us = userMapper.selectByWxhOrSjh(loginReq.getWxh(), loginReq.getSjh());
+    public ResultDto<User> wxLogin(String wxh,String sjh) {
+        if (wxh != null && sjh != null) {
+            User us = userMapper.selectByWxhOrSjh(wxh, sjh);
             if (us != null) {
                 return RestResult.getSuccessResult(us);
             }
@@ -51,8 +50,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public ResultDto<User> sjyzLogin(LoginReq loginReq) {
-        User us = userMapper.selectBySjh(loginReq.getSjh());
+    public ResultDto<User> sjyzLogin(String sjh) {
+        User us = userMapper.selectBySjh(sjh);
         if (us != null){
             return RestResult.getSuccessResult(us);
         }
@@ -78,12 +77,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public ResultDto<Integer> reSetMm(User user) {
-        User us = userMapper.selectBySjh(user.getSjh());
+    public ResultDto<Integer> reSetMm(String sjh,String mm,Integer id) {
+        User us = userMapper.selectBySjh(sjh);
         if (us != null) {
-            us.setMm(user.getMm());
+            us.setMm(mm);
+            us.setId(id);
             userMapper.updateByPrimaryKeySelective(us);
-            return RestResult.getSuccessResult(user.getId());
+            return RestResult.getSuccessResult(id);
         }
         return RestResult.getFailResult("账号不存在");
     }

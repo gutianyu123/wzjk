@@ -1,7 +1,6 @@
 package com.wzjk.controller;
 
 import com.wzjk.entity.User;
-import com.wzjk.request.LoginReq;
 import com.wzjk.request.UserReq;
 import com.wzjk.service.UserService;
 import com.wzjk.utils.ResultDto;
@@ -23,20 +22,20 @@ public class LoginController {
 
     @ApiOperation(value = "账号登录")
     @PostMapping(value = "/zhLogin")
-    public ResultDto<User> zhLogin(@RequestBody LoginReq loginReq) {
-        return userService.zhLogin(loginReq);
+    public ResultDto<User> zhLogin(String loginName,String mm) {
+        return userService.zhLogin(loginName,mm);
     }
 
     @ApiOperation(value = "微信登录")
     @PostMapping(value = "/wxLogin")
-    public ResultDto<User> wxLogin(@RequestBody LoginReq loginReq) {
-        return userService.wxLogin(loginReq);
+    public ResultDto<User> wxLogin(String wxh,String sjh) {
+        return userService.wxLogin(wxh,sjh);
     }
 
     @ApiOperation(value = "手机验证登录")
     @PostMapping(value = "/sjyzLogin")
-    public ResultDto<User> sjyzLogin(@RequestBody LoginReq loginReq) {
-        return userService.sjyzLogin(loginReq);
+    public ResultDto<User> sjyzLogin(String sjh) {
+        return userService.sjyzLogin(sjh);
     }
 
     @ApiOperation(value = "微信授权&&快速注册")
@@ -47,8 +46,8 @@ public class LoginController {
 
     @ApiOperation(value = "重置密码")
     @PostMapping(value = "/reSetMm")
-    public ResultDto<Integer> reSetMm(@RequestBody User user) {
-        return userService.reSetMm(user);
+    public ResultDto<Integer> reSetMm(String sjh,String mm,Integer id) {
+        return userService.reSetMm(sjh,mm,id);
     }
 
     @ApiOperation(value = "个人信息是否完善")
