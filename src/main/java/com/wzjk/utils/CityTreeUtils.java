@@ -31,6 +31,7 @@ public class CityTreeUtils {
                 Integer childId = child.getId();
 
                 CityResp cityTwo = new CityResp();
+                BeanUtils.copyProperties(child,cityTwo);
                 cityTwo.setId(childId);
                 cityTwo.setSjzz(child.getSjzz());
                 childrenNodes.add(cityTwo);
