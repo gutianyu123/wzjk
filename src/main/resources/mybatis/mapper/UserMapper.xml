@@ -14,12 +14,13 @@
     <result column="csrq" jdbcType="TIMESTAMP" property="csrq" />
     <result column="xb" jdbcType="INTEGER" property="xb" />
     <result column="hf" jdbcType="INTEGER" property="hf" />
+    <result column="sfsy" jdbcType="INTEGER" property="sfsy" />
     <result column="zzid" jdbcType="INTEGER" property="zzid" />
     <result column="zt" jdbcType="INTEGER" property="zt" />
     <result column="wxh" jdbcType="VARCHAR" property="wxh" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, sjh, gh, yx, mm, qyid, tx, nc, xm, csrq, xb, hf, zzid, zt, wxh
+    id, sjh, gh, yx, mm, qyid, tx, nc, xm, csrq, xb, sfsy, hf, zzid, zt, wxh
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -35,12 +36,12 @@
     insert into tb_user (id, sjh, gh, 
       yx, mm, qyid, tx, 
       nc, xm, csrq, xb, 
-      hf, zzid, zt, wxh
+      hf, sfsy, zzid, zt, wxh
       )
     values (#{id,jdbcType=INTEGER}, #{sjh,jdbcType=VARCHAR}, #{gh,jdbcType=VARCHAR}, 
       #{yx,jdbcType=VARCHAR}, #{mm,jdbcType=VARCHAR}, #{qyid,jdbcType=INTEGER}, #{tx,jdbcType=VARCHAR}, 
       #{nc,jdbcType=VARCHAR}, #{xm,jdbcType=VARCHAR}, #{csrq,jdbcType=TIMESTAMP}, #{xb,jdbcType=INTEGER}, 
-      #{hf,jdbcType=INTEGER}, #{zzid,jdbcType=INTEGER}, #{zt,jdbcType=INTEGER}, #{wxh,jdbcType=VARCHAR}
+      #{hf,jdbcType=INTEGER}, #{sfsy,jdbcType=INTEGER}, #{zzid,jdbcType=INTEGER}, #{zt,jdbcType=INTEGER}, #{wxh,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.wzjk.entity.User">
@@ -81,6 +82,9 @@
       </if>
       <if test="hf != null">
         hf,
+      </if>
+      <if test="sfsy != null">
+        sfsy,
       </if>
       <if test="zzid != null">
         zzid,
@@ -129,6 +133,9 @@
       <if test="hf != null">
         #{hf,jdbcType=INTEGER},
       </if>
+      <if test="sfsy != null">
+        #{sfsy,jdbcType=INTEGER},
+      </if>
       <if test="zzid != null">
         #{zzid,jdbcType=INTEGER},
       </if>
@@ -176,6 +183,9 @@
       <if test="hf != null">
         hf = #{hf,jdbcType=INTEGER},
       </if>
+      <if test="sfsy != null">
+        sfsy = #{sfsy,jdbcType=INTEGER},
+      </if>
       <if test="zzid != null">
         zzid = #{zzid,jdbcType=INTEGER},
       </if>
@@ -201,6 +211,7 @@
       csrq = #{csrq,jdbcType=TIMESTAMP},
       xb = #{xb,jdbcType=INTEGER},
       hf = #{hf,jdbcType=INTEGER},
+      sfsy = #{sfsy,jdbcType=INTEGER},
       zzid = #{zzid,jdbcType=INTEGER},
       zt = #{zt,jdbcType=INTEGER},
       wxh = #{wxh,jdbcType=VARCHAR}

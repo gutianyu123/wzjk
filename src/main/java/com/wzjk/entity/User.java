@@ -50,6 +50,9 @@ public class User {
     @ApiModelProperty(value = "婚否 1-已婚 2-未婚")
     private Integer hf;
 
+    @ApiModelProperty(value = "是否有孩子 1-没有 2-有")
+    private Integer sfsy;
+
     @ApiModelProperty(value = "组织id")
     private Integer zzid;
 
