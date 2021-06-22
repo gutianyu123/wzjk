@@ -1,6 +1,9 @@
 package com.wzjk.mapper;
 
 import com.wzjk.entity.AssessmentType;
+import com.wzjk.response.AssessmentTypeResp;
+
+import java.util.List;
 
 public interface AssessmentTypeMapper {
     int deleteByPrimaryKey(Integer id);
@@ -14,4 +17,6 @@ public interface AssessmentTypeMapper {
     int updateByPrimaryKeySelective(AssessmentType record);
 
     int updateByPrimaryKey(AssessmentType record);
+
+    List<AssessmentTypeResp> getType();
 }

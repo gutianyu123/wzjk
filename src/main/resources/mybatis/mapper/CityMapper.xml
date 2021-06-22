@@ -17,9 +17,7 @@
   </select>
 
   <select id="selectCity" resultType="com.wzjk.response.CityResp">
-    select
-    <include refid="Base_Column_List" />
-    from tb_city
+    select  *,id as `value`,zzmc as text from tb_city
     order by id asc
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">

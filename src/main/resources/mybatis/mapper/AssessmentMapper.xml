@@ -5,10 +5,11 @@
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="pglxid" jdbcType="INTEGER" property="pglxid" />
     <result column="tmmc" jdbcType="VARCHAR" property="tmmc" />
+    <result column="sm" jdbcType="VARCHAR" property="sm" />
     <result column="tmlx" jdbcType="INTEGER" property="tmlx" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, pglxid, tmmc, tmlx
+    id, pglxid, tmmc, tmlx, sm
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -16,15 +17,23 @@
     from tb_assessment
     where id = #{id,jdbcType=INTEGER}
   </select>
+
+  <select id="selectAssessment" resultType="com.wzjk.response.AssessmentResp">
+    select
+    <include refid="Base_Column_List" />
+    from tb_assessment
+    where pglxid=#{pglxid}
+    order by id asc
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from tb_assessment
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.wzjk.entity.Assessment">
     insert into tb_assessment (id, pglxid, tmmc, 
-      tmlx)
-    values (#{id,jdbcType=INTEGER}, #{pglxid,jdbcType=INTEGER}, #{tmmc,jdbcType=VARCHAR}, 
-      #{tmlx,jdbcType=INTEGER})
+      tmlx, sm)
+    values (#{id,jdbcType=INTEGER}, #{pglxid,jdbcType=INTEGER}, #{tmmc,jdbcType=VARCHAR},
+      #{tmlx,jdbcType=INTEGER}, #{sm,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.wzjk.entity.Assessment">
     insert into tb_assessment
@@ -41,6 +50,9 @@
       <if test="tmlx != null">
         tmlx,
       </if>
+      <if test="sm != null">
+        sm,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -54,6 +66,9 @@
       </if>
       <if test="tmlx != null">
         #{tmlx,jdbcType=INTEGER},
+      </if>
+      <if test="sm != null">
+        #{sm,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -69,6 +84,9 @@
       <if test="tmlx != null">
         tmlx = #{tmlx,jdbcType=INTEGER},
       </if>
+      <if test="sm != null">
+        sm = #{sm,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -76,7 +94,8 @@
     update tb_assessment
     set pglxid = #{pglxid,jdbcType=INTEGER},
       tmmc = #{tmmc,jdbcType=VARCHAR},
-      tmlx = #{tmlx,jdbcType=INTEGER}
+      tmlx = #{tmlx,jdbcType=INTEGER},
+      sm = #{sm,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

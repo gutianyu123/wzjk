@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wzjk.mapper.AssessmentResultMapper">
+  <resultMap id="BaseResultMap" type="com.wzjk.entity.AssessmentResult">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="yhid" jdbcType="INTEGER" property="yhid" />
+    <result column="zxbs" jdbcType="VARCHAR" property="zxbs" />
+    <result column="jwbs" jdbcType="VARCHAR" property="jwbs" />
+    <result column="ssyy" jdbcType="INTEGER" property="ssyy" />
+    <result column="zjjk" jdbcType="INTEGER" property="zjjk" />
+    <result column="shxg" jdbcType="INTEGER" property="shxg" />
+    <result column="yddl" jdbcType="INTEGER" property="yddl" />
+    <result column="jsll" jdbcType="INTEGER" property="jsll" />
+    <result column="zf" jdbcType="INTEGER" property="zf" />
+    <result column="sj" jdbcType="TIMESTAMP" property="sj" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, yhid, zxbs, jwbs, ssyy, zjjk, shxg, yddl, jsll, zf, sj
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_assessment_result
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <select id="getAssessmentResult" resultType="com.wzjk.response.AssessmentResultResp">
+    select
+    <include refid="Base_Column_List" />
+    from tb_assessment_result
+    where yhid = #{yhid}
+    order by sj desc
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tb_assessment_result
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.wzjk.entity.AssessmentResult">
+    insert into tb_assessment_result (id, yhid, zxbs, 
+      jwbs, ssyy, zjjk, shxg, 
+      yddl, jsll, zf, sj
+      )
+    values (#{id,jdbcType=INTEGER}, #{yhid,jdbcType=INTEGER}, #{zxbs,jdbcType=VARCHAR}, 
+      #{jwbs,jdbcType=VARCHAR}, #{ssyy,jdbcType=INTEGER}, #{zjjk,jdbcType=INTEGER}, #{shxg,jdbcType=INTEGER}, 
+      #{yddl,jdbcType=INTEGER}, #{jsll,jdbcType=INTEGER}, #{zf,jdbcType=INTEGER}, #{sj,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.wzjk.entity.AssessmentResult">
+    insert into tb_assessment_result
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="yhid != null">
+        yhid,
+      </if>
+      <if test="zxbs != null">
+        zxbs,
+      </if>
+      <if test="jwbs != null">
+        jwbs,
+      </if>
+      <if test="ssyy != null">
+        ssyy,
+      </if>
+      <if test="zjjk != null">
+        zjjk,
+      </if>
+      <if test="shxg != null">
+        shxg,
+      </if>
+      <if test="yddl != null">
+        yddl,
+      </if>
+      <if test="jsll != null">
+        jsll,
+      </if>
+      <if test="zf != null">
+        zf,
+      </if>
+      <if test="sj != null">
+        sj,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="yhid != null">
+        #{yhid,jdbcType=INTEGER},
+      </if>
+      <if test="zxbs != null">
+        #{zxbs,jdbcType=VARCHAR},
+      </if>
+      <if test="jwbs != null">
+        #{jwbs,jdbcType=VARCHAR},
+      </if>
+      <if test="ssyy != null">
+        #{ssyy,jdbcType=INTEGER},
+      </if>
+      <if test="zjjk != null">
+        #{zjjk,jdbcType=INTEGER},
+      </if>
+      <if test="shxg != null">
+        #{shxg,jdbcType=INTEGER},
+      </if>
+      <if test="yddl != null">
+        #{yddl,jdbcType=INTEGER},
+      </if>
+      <if test="jsll != null">
+        #{jsll,jdbcType=INTEGER},
+      </if>
+      <if test="zf != null">
+        #{zf,jdbcType=INTEGER},
+      </if>
+      <if test="sj != null">
+        #{sj,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wzjk.entity.AssessmentResult">
+    update tb_assessment_result
+    <set>
+      <if test="yhid != null">
+        yhid = #{yhid,jdbcType=INTEGER},
+      </if>
+      <if test="zxbs != null">
+        zxbs = #{zxbs,jdbcType=VARCHAR},
+      </if>
+      <if test="jwbs != null">
+        jwbs = #{jwbs,jdbcType=VARCHAR},
+      </if>
+      <if test="ssyy != null">
+        ssyy = #{ssyy,jdbcType=INTEGER},
+      </if>
+      <if test="zjjk != null">
+        zjjk = #{zjjk,jdbcType=INTEGER},
+      </if>
+      <if test="shxg != null">
+        shxg = #{shxg,jdbcType=INTEGER},
+      </if>
+      <if test="yddl != null">
+        yddl = #{yddl,jdbcType=INTEGER},
+      </if>
+      <if test="jsll != null">
+        jsll = #{jsll,jdbcType=INTEGER},
+      </if>
+      <if test="zf != null">
+        zf = #{zf,jdbcType=INTEGER},
+      </if>
+      <if test="sj != null">
+        sj = #{sj,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wzjk.entity.AssessmentResult">
+    update tb_assessment_result
+    set yhid = #{yhid,jdbcType=INTEGER},
+      zxbs = #{zxbs,jdbcType=VARCHAR},
+      jwbs = #{jwbs,jdbcType=VARCHAR},
+      ssyy = #{ssyy,jdbcType=INTEGER},
+      zjjk = #{zjjk,jdbcType=INTEGER},
+      shxg = #{shxg,jdbcType=INTEGER},
+      yddl = #{yddl,jdbcType=INTEGER},
+      jsll = #{jsll,jdbcType=INTEGER},
+      zf = #{zf,jdbcType=INTEGER},
+      sj = #{sj,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

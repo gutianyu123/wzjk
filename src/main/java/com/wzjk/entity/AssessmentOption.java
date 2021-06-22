@@ -21,4 +21,7 @@ public class AssessmentOption {
 
     @ApiModelProperty(value = "选项名称")
     private String xxmr;
+
+    @ApiModelProperty(value = "分数")
+    private Integer fs;
 }

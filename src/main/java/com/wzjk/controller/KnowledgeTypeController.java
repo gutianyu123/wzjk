@@ -1,6 +1,5 @@
 package com.wzjk.controller;
 
-import com.wzjk.response.CityResp;
 import com.wzjk.response.KnowledgeTypeResp;
 import com.wzjk.service.KnowledgeTypeService;
 import com.wzjk.utils.ResultDto;

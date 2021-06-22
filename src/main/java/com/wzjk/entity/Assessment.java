@@ -24,4 +24,7 @@ public class Assessment {
 
     @ApiModelProperty(value = "题目类型 1-单选 2-多选")
     private Integer tmlx;
+
+    @ApiModelProperty(value = "说明")
+    private String sm;
 }

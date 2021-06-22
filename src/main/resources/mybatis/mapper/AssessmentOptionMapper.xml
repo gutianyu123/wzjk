@@ -4,10 +4,11 @@
   <resultMap id="BaseResultMap" type="com.wzjk.entity.AssessmentOption">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="pgld" jdbcType="INTEGER" property="pgld" />
+    <result column="fs" jdbcType="INTEGER" property="fs" />
     <result column="xxmr" jdbcType="VARCHAR" property="xxmr" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, pgld, xxmr
+    id, pgld, xxmr, fs
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -15,14 +16,22 @@
     from tb_assessment_option
     where id = #{id,jdbcType=INTEGER}
   </select>
+
+  <select id="getOption" resultType="com.wzjk.response.AssessmentOptionResp">
+    select
+    <include refid="Base_Column_List" />
+    from tb_assessment_option
+    where pgld = #{pgld}
+    order by id asc
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from tb_assessment_option
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.wzjk.entity.AssessmentOption">
-    insert into tb_assessment_option (id, pgld, xxmr
+    insert into tb_assessment_option (id, pgld, fs, xxmr
       )
-    values (#{id,jdbcType=INTEGER}, #{pgld,jdbcType=INTEGER}, #{xxmr,jdbcType=VARCHAR}
+    values (#{id,jdbcType=INTEGER}, #{pgld,jdbcType=INTEGER}, #{fs,jdbcType=INTEGER}, #{xxmr,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.wzjk.entity.AssessmentOption">
@@ -37,6 +46,9 @@
       <if test="xxmr != null">
         xxmr,
       </if>
+      <if test="fs != null">
+        fs,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -47,6 +59,9 @@
       </if>
       <if test="xxmr != null">
         #{xxmr,jdbcType=VARCHAR},
+      </if>
+      <if test="fs != null">
+        #{fs,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -59,13 +74,17 @@
       <if test="xxmr != null">
         xxmr = #{xxmr,jdbcType=VARCHAR},
       </if>
+      <if test="fs != null">
+        fs = #{fs,jdbcType=INTEGER},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.wzjk.entity.AssessmentOption">
     update tb_assessment_option
     set pgld = #{pgld,jdbcType=INTEGER},
-      xxmr = #{xxmr,jdbcType=VARCHAR}
+      xxmr = #{xxmr,jdbcType=VARCHAR},
+      fs = #{fs,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

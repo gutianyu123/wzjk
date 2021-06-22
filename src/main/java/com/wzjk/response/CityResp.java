@@ -13,7 +13,13 @@ import java.util.List;
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
 @ApiModel(value="cityResp",description= "地区查询结果")
-public class CityResp extends City {
+public class CityResp extends City{
+
+    @ApiModelProperty(value = "地区名称")
+    private String text;
+
+    @ApiModelProperty(value = "地区id")
+    private Integer value;
 
     @ApiModelProperty(value = "子地区list")
     private List<CityResp> children;

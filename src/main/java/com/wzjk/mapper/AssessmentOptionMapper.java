@@ -1,6 +1,10 @@
 package com.wzjk.mapper;
 
 import com.wzjk.entity.AssessmentOption;
+import com.wzjk.response.AssessmentOptionResp;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface AssessmentOptionMapper {
     int deleteByPrimaryKey(Integer id);
@@ -14,4 +18,6 @@ public interface AssessmentOptionMapper {
     int updateByPrimaryKeySelective(AssessmentOption record);
 
     int updateByPrimaryKey(AssessmentOption record);
+
+    List<AssessmentOptionResp> getOption(@Param("pgld") Integer pgld);
 }
