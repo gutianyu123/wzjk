@@ -7,10 +7,7 @@ import com.wzjk.utils.ResultDto;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/login")
@@ -21,19 +18,19 @@ public class LoginController {
     private UserService userService;
 
     @ApiOperation(value = "账号登录")
-    @PostMapping(value = "/zhLogin")
+    @GetMapping(value = "/zhLogin")
     public ResultDto<User> zhLogin(String loginName,String mm) {
         return userService.zhLogin(loginName,mm);
     }
 
     @ApiOperation(value = "微信登录")
-    @PostMapping(value = "/wxLogin")
+    @GetMapping(value = "/wxLogin")
     public ResultDto<User> wxLogin(String wxh,String sjh) {
         return userService.wxLogin(wxh,sjh);
     }
 
     @ApiOperation(value = "手机验证登录")
-    @PostMapping(value = "/sjyzLogin")
+    @GetMapping(value = "/sjyzLogin")
     public ResultDto<User> sjyzLogin(String sjh) {
         return userService.sjyzLogin(sjh);
     }
@@ -45,13 +42,13 @@ public class LoginController {
     }
 
     @ApiOperation(value = "重置密码")
-    @PostMapping(value = "/reSetMm")
+    @GetMapping(value = "/reSetMm")
     public ResultDto<Integer> reSetMm(String sjh,String mm) {
         return userService.reSetMm(sjh,mm);
     }
 
     @ApiOperation(value = "个人信息是否完善")
-    @PostMapping(value = "/manInfor")
+    @GetMapping(value = "/manInfor")
     public ResultDto<User> manInfor(Integer id) {
         return userService.manInfor(id);
     }
