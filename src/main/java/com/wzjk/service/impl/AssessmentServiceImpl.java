@@ -10,6 +10,7 @@ import com.wzjk.response.AssessmentTypeResp;
 import com.wzjk.service.AssessmentService;
 import com.wzjk.utils.RestResult;
 import com.wzjk.utils.ResultDto;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -72,5 +73,18 @@ public class AssessmentServiceImpl implements AssessmentService {
             }
         });
         return RestResult.getSuccessResult(list);
+    }
+
+    @Override
+    public ResultDto<AssessmentResultResp> getAssessmentResultDetail(Integer id) {
+        AssessmentResult assessmentResult=assessmentResultMapper.selectByPrimaryKey(id);
+        AssessmentResultResp assessmentResultResp=new AssessmentResultResp();
+        BeanUtils.copyProperties(assessmentResult,assessmentResultResp);
+        User user=userMapper.selectByPrimaryKey(assessmentResult.getYhid());
+        if(user!=null){
+            assessmentResultResp.setYhm(user.getXm());
+            assessmentResultResp.setWjmc("评估数据");
+        }
+        return RestResult.getSuccessResult(assessmentResultResp);
     }
 }

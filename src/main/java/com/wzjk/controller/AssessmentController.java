@@ -37,10 +37,17 @@ public class AssessmentController {
     }
 
 
-    @ApiOperation(value = "查询问卷调查")
+    @ApiOperation(value = "查询问卷调查结果")
     @GetMapping(value = "/getAssessmentResult")
     public ResultDto<List<AssessmentResultResp>> getAssessmentResult(Integer yhid) {
         return assessmentService.getAssessmentResult(yhid);
+
+    }
+
+    @ApiOperation(value = "查询问卷调查结果详情")
+    @GetMapping(value = "/getAssessmentResultDetail")
+    public ResultDto<AssessmentResultResp> getAssessmentResultDetail(Integer id) {
+        return assessmentService.getAssessmentResultDetail(id);
 
     }
 }
