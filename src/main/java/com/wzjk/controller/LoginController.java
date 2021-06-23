@@ -46,8 +46,8 @@ public class LoginController {
 
     @ApiOperation(value = "重置密码")
     @PostMapping(value = "/reSetMm")
-    public ResultDto<Integer> reSetMm(String sjh,String mm,Integer id) {
-        return userService.reSetMm(sjh,mm,id);
+    public ResultDto<Integer> reSetMm(String sjh,String mm) {
+        return userService.reSetMm(sjh,mm);
     }
 
     @ApiOperation(value = "个人信息是否完善")

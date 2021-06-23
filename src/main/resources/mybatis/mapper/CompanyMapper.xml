@@ -94,7 +94,7 @@
   <select id="selectByQyyqm" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
-    from tb_user
+    from tb_company
     where qyyqm = #{qyyqm,jdbcType=VARCHAR}
   </select>
 

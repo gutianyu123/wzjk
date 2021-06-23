@@ -77,13 +77,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public ResultDto<Integer> reSetMm(String sjh,String mm,Integer id) {
+    public ResultDto<Integer> reSetMm(String sjh,String mm) {
         User us = userMapper.selectBySjh(sjh);
         if (us != null) {
             us.setMm(mm);
-            us.setId(id);
             userMapper.updateByPrimaryKeySelective(us);
-            return RestResult.getSuccessResult(id);
+            return RestResult.getSuccessResult(us.getId());
         }
         return RestResult.getFailResult("账号不存在");
     }

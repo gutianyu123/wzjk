@@ -14,7 +14,7 @@ public interface UserService {
 
     ResultDto<User> wxsqRegist(UserReq userReq);
 
-    ResultDto<Integer> reSetMm(String sjh,String mm,Integer id);
+    ResultDto<Integer> reSetMm(String sjh,String mm);
 
     ResultDto<User> updateManInfor(User user);
 
