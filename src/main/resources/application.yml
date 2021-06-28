@@ -3,6 +3,10 @@ server:
     max-http-post-size: -1
   session-timeout: 7200
   port: 8100
+  ssl:
+    key-store: classpath:5869268__wz-health.com.pfx
+    key-store-password: fA5cfmI4
+    keyStoreType: JKS
 
 spring:
   profiles:
