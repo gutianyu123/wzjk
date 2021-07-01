@@ -1,5 +1,6 @@
 package com.wzjk.mapper;
 
+import com.wzjk.entity.Company;
 import com.wzjk.entity.User;
 import org.apache.ibatis.annotations.Param;
 
@@ -21,4 +22,6 @@ public interface UserMapper {
     User selectByWxhOrSjh(@Param("wxh") String wxh, @Param("sjh") String sjh);
 
     User selectBySjh(@Param("sjh") String sjh);
+
+    Company getCompany(@Param("userId") Integer userId);
 }

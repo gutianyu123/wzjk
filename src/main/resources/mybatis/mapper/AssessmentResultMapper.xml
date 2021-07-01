@@ -36,7 +36,7 @@
     delete from tb_assessment_result
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.wzjk.entity.AssessmentResult">
+  <insert id="insert" parameterType="com.wzjk.entity.AssessmentResult" useGeneratedKeys="true" keyProperty="id">
     insert into tb_assessment_result (id, yhid, zxbs, 
       jwbs, ssyy, zjjk, shxg, 
       yddl, jsll, zf, sj
@@ -46,7 +46,7 @@
       #{yddl,jdbcType=INTEGER}, #{jsll,jdbcType=INTEGER}, #{zf,jdbcType=INTEGER}, #{sj,jdbcType=TIMESTAMP}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.wzjk.entity.AssessmentResult">
+  <insert id="insertSelective" parameterType="com.wzjk.entity.AssessmentResult" useGeneratedKeys="true" keyProperty="id">
     insert into tb_assessment_result
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">

@@ -1,5 +1,6 @@
 package com.wzjk.service;
 
+import com.wzjk.entity.Company;
 import com.wzjk.entity.User;
 import com.wzjk.request.LoginReq;
 import com.wzjk.request.UserReq;
@@ -19,4 +20,6 @@ public interface UserService {
     ResultDto<User> updateManInfor(User user);
 
     ResultDto<User> manInfor(Integer id);
+
+    ResultDto<Company> getCompany(Integer userId);
 }

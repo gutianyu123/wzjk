@@ -102,4 +102,10 @@ public class UserServiceImpl implements UserService {
         return RestResult.getFailResult("请完善个人信息");
     }
 
+    @Override
+    public ResultDto<Company> getCompany(Integer userId) {
+        Company company=userMapper.getCompany(userId);
+        return RestResult.getSuccessResult(company);
+    }
+
 }

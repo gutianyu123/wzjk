@@ -244,4 +244,10 @@
     where sjh = #{sjh} and zt = 1
   </select>
 
+  <select id="getCompany" resultType="com.wzjk.entity.Company">
+    select tc.* from tb_user tu
+    left join tb_company tc on tu.qyid=tc.id
+    where tu.id=#{userId}
+
+  </select>
 </mapper>

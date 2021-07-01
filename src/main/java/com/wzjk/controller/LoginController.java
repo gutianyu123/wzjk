@@ -1,5 +1,6 @@
 package com.wzjk.controller;
 
+import com.wzjk.entity.Company;
 import com.wzjk.entity.User;
 import com.wzjk.request.UserReq;
 import com.wzjk.service.UserService;
@@ -59,7 +60,11 @@ public class LoginController {
         return userService.updateManInfor(user);
     }
 
-
+    @ApiOperation(value = "获取公司信息")
+    @GetMapping(value = "/getCompany")
+    public ResultDto<Company> getCompany(Integer userId) {
+        return userService.getCompany(userId);
+    }
 
 }
 

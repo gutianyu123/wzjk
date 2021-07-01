@@ -59,7 +59,7 @@ public class AssessmentServiceImpl implements AssessmentService {
         assessmentResult.setSj(new Date());
         assessmentResult.setZf(zf);
         assessmentResultMapper.insertSelective(assessmentResult);
-        return RestResult.getSuccessResult(1);
+        return RestResult.getSuccessResult(assessmentResult.getId());
     }
 
     @Override
