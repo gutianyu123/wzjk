@@ -14,6 +14,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -64,8 +65,10 @@ public class AssessmentServiceImpl implements AssessmentService {
 
     @Override
     public ResultDto<List<AssessmentResultResp>> getAssessmentResult(Integer yhid) {
+        SimpleDateFormat format=new SimpleDateFormat("yyyy-MM-dd");
         List<AssessmentResultResp> list=assessmentResultMapper.getAssessmentResult(yhid);
         list.forEach(x->{
+            x.setCpsj(format.format(x.getSj()));
             User user=userMapper.selectByPrimaryKey(x.getYhid());
             if(user!=null){
                 x.setYhm(user.getXm());

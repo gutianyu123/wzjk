@@ -4,6 +4,7 @@ import com.wzjk.entity.Company;
 import com.wzjk.entity.User;
 import com.wzjk.request.LoginReq;
 import com.wzjk.request.UserReq;
+import com.wzjk.response.WxResp;
 import com.wzjk.utils.ResultDto;
 
 public interface UserService {
@@ -22,4 +23,6 @@ public interface UserService {
     ResultDto<User> manInfor(Integer id);
 
     ResultDto<Company> getCompany(Integer userId);
+
+    ResultDto<WxResp> getWxyz(String code) throws Exception;
 }

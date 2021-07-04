@@ -7,6 +7,8 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 
+import java.util.Date;
+
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
@@ -19,4 +21,7 @@ public class AssessmentResultResp extends AssessmentResult {
 
     @ApiModelProperty(value = "用户名称")
     private String yhm;
+
+    @ApiModelProperty(value = "测评日期-String")
+    private String cpsj;
 }

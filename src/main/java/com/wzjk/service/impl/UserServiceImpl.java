@@ -4,14 +4,20 @@ import com.wzjk.entity.Company;
 import com.wzjk.entity.User;
 import com.wzjk.mapper.CompanyMapper;
 import com.wzjk.mapper.UserMapper;
-import com.wzjk.request.LoginReq;
 import com.wzjk.request.UserReq;
+import com.wzjk.response.WxResp;
 import com.wzjk.service.UserService;
 import com.wzjk.utils.RestResult;
 import com.wzjk.utils.ResultDto;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import com.alibaba.fastjson.JSON;
+import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -107,5 +113,33 @@ public class UserServiceImpl implements UserService {
         Company company=userMapper.getCompany(userId);
         return RestResult.getSuccessResult(company);
     }
+
+    @Override
+    public ResultDto<WxResp> getWxyz(String code) throws Exception {
+        OkHttpClient client = new OkHttpClient();
+        String url="https://api.weixin.qq.com/sns/jscode2session?appid=wx31d813b294f45764&secret=5efa90ef7042be9826a2c2474b713d1c&js_code="+code;
+        Request request = new Request.Builder()
+                .url(url)
+                .get()
+                .build();
+
+        Response response = client.newCall(request).execute();
+        InputStream is = response.body().byteStream();//从服务器得到输入流对象
+        byte[] b = new byte[1024];
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        int len = 0;
+        while (true) {
+            len = is.read(b);
+            if (len == -1) {
+                break;
+            }
+            byteArrayOutputStream.write(b, 0, len);
+        }
+        String result = byteArrayOutputStream.toString();
+        WxResp wxResp=JSON.parseObject(result, WxResp.class);
+        return RestResult.getSuccessResult(wxResp);
+    }
+
+
 
 }

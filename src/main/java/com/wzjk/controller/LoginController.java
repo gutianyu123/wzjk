@@ -3,6 +3,7 @@ package com.wzjk.controller;
 import com.wzjk.entity.Company;
 import com.wzjk.entity.User;
 import com.wzjk.request.UserReq;
+import com.wzjk.response.WxResp;
 import com.wzjk.service.UserService;
 import com.wzjk.utils.ResultDto;
 import io.swagger.annotations.Api;
@@ -65,6 +66,10 @@ public class LoginController {
     public ResultDto<Company> getCompany(Integer userId) {
         return userService.getCompany(userId);
     }
-
+    @ApiOperation(value = "获取微信验证")
+    @GetMapping(value = "/getWxyz")
+    public ResultDto<WxResp> getWxyz(String code) throws Exception {
+        return userService.getWxyz(code);
+    }
 }
 
