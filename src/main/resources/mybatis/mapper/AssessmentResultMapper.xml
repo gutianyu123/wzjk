@@ -13,9 +13,10 @@
     <result column="jsll" jdbcType="INTEGER" property="jsll" />
     <result column="zf" jdbcType="INTEGER" property="zf" />
     <result column="sj" jdbcType="TIMESTAMP" property="sj" />
+    <result column="bni" jdbcType="VARCHAR" property="bni" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, yhid, zxbs, jwbs, ssyy, zjjk, shxg, yddl, jsll, zf, sj
+    id, yhid, zxbs, jwbs, ssyy, zjjk, shxg, yddl, jsll, zf, sj, bni
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -39,11 +40,11 @@
   <insert id="insert" parameterType="com.wzjk.entity.AssessmentResult" useGeneratedKeys="true" keyProperty="id">
     insert into tb_assessment_result (id, yhid, zxbs, 
       jwbs, ssyy, zjjk, shxg, 
-      yddl, jsll, zf, sj
+      yddl, jsll, zf, sj, bni
       )
     values (#{id,jdbcType=INTEGER}, #{yhid,jdbcType=INTEGER}, #{zxbs,jdbcType=VARCHAR}, 
       #{jwbs,jdbcType=VARCHAR}, #{ssyy,jdbcType=INTEGER}, #{zjjk,jdbcType=INTEGER}, #{shxg,jdbcType=INTEGER}, 
-      #{yddl,jdbcType=INTEGER}, #{jsll,jdbcType=INTEGER}, #{zf,jdbcType=INTEGER}, #{sj,jdbcType=TIMESTAMP}
+      #{yddl,jdbcType=INTEGER}, #{jsll,jdbcType=INTEGER}, #{zf,jdbcType=INTEGER}, #{sj,jdbcType=TIMESTAMP}, #{bni,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.wzjk.entity.AssessmentResult" useGeneratedKeys="true" keyProperty="id">
@@ -82,6 +83,9 @@
       <if test="sj != null">
         sj,
       </if>
+      <if test="bni != null">
+        bni,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -116,6 +120,9 @@
       </if>
       <if test="sj != null">
         #{sj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bni != null">
+        #{bni,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -152,6 +159,9 @@
       <if test="sj != null">
         sj = #{sj,jdbcType=TIMESTAMP},
       </if>
+      <if test="bni != null">
+        bni = #{bni,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -166,7 +176,8 @@
       yddl = #{yddl,jdbcType=INTEGER},
       jsll = #{jsll,jdbcType=INTEGER},
       zf = #{zf,jdbcType=INTEGER},
-      sj = #{sj,jdbcType=TIMESTAMP}
+      sj = #{sj,jdbcType=TIMESTAMP},
+      bni = #{bni,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

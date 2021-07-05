@@ -66,6 +66,7 @@ public class LoginController {
     public ResultDto<Company> getCompany(Integer userId) {
         return userService.getCompany(userId);
     }
+
     @ApiOperation(value = "获取微信验证")
     @GetMapping(value = "/getWxyz")
     public ResultDto<WxResp> getWxyz(String code) throws Exception {

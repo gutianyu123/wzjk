@@ -140,6 +140,11 @@ public class UserServiceImpl implements UserService {
         return RestResult.getSuccessResult(wxResp);
     }
 
+    @Override
+    public ResultDto<User> updateUser(User user) {
+        userMapper.updateByPrimaryKeySelective(user);
+        return RestResult.getSuccessResult(userMapper.selectByPrimaryKey(user.getId()));
+    }
 
 
 }

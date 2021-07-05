@@ -61,4 +61,10 @@ public class User {
 
     @ApiModelProperty(value = "微信号")
     private String wxh;
+
+    @ApiModelProperty(value = "身高")
+    private String sg;
+
+    @ApiModelProperty(value = "体重")
+    private String tz;
 }

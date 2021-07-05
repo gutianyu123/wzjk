@@ -84,8 +84,8 @@
     <!--分页 -->
     <dependency>
         <groupId>com.github.pagehelper</groupId>
-        <artifactId>pagehelper</artifactId>
-        <version>4.1.0</version>
+        <artifactId>pagehelper-spring-boot-starter</artifactId>
+        <version>1.2.10</version>
     </dependency>
 
     <!-- https://mvnrepository.com/artifact/io.springfox/springfox-swagger2 -->

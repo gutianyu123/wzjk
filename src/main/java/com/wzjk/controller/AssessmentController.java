@@ -50,4 +50,5 @@ public class AssessmentController {
         return assessmentService.getAssessmentResultDetail(id);
 
     }
+
 }

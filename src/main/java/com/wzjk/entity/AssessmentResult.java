@@ -47,4 +47,7 @@ public class AssessmentResult {
 
     @ApiModelProperty(value = "测评日期")
     private Date sj;
+
+    @ApiModelProperty(value = "bni")
+    private String bni;
 }

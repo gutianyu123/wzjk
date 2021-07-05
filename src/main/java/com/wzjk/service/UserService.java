@@ -25,4 +25,6 @@ public interface UserService {
     ResultDto<Company> getCompany(Integer userId);
 
     ResultDto<WxResp> getWxyz(String code) throws Exception;
+
+    ResultDto<User> updateUser(User user);
 }

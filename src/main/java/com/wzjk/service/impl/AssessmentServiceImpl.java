@@ -14,6 +14,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -55,6 +56,15 @@ public class AssessmentServiceImpl implements AssessmentService {
 
     @Override
     public ResultDto<Integer> saveAssessmentResult(AssessmentResult assessmentResult) {
+        //计算bni值
+        User user=userMapper.selectByPrimaryKey(assessmentResult.getYhid());
+        if(user.getSg()!=null&&user.getSg()!=""&&user.getTz()!=null&&user.getTz()!=""){
+            Double bni=Double.valueOf(user.getTz())/(Double.valueOf(user.getSg())*Double.valueOf(user.getSg())/10000);
+            DecimalFormat df = new DecimalFormat("#.0");
+            assessmentResult.setBni(df.format(bni));
+        }else{
+            assessmentResult.setBni("0");
+        }
         Integer zf=assessmentResult.getJsll()+assessmentResult.getShxg()+assessmentResult.getSsyy()+
                 assessmentResult.getYddl()+assessmentResult.getZjjk();
         assessmentResult.setSj(new Date());
