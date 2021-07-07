@@ -100,4 +100,14 @@ public class AssessmentServiceImpl implements AssessmentService {
         }
         return RestResult.getSuccessResult(assessmentResultResp);
     }
+
+    @Override
+    public ResultDto<Integer> getIsHaveAssessment(Integer yhid) {
+        List<AssessmentResultResp> list=assessmentResultMapper.getAssessmentResult(yhid);
+        if(list==null||list.size()==0){
+            return RestResult.getSuccessResult(1);
+        }else{
+            return RestResult.getSuccessResult(0);
+        }
+    }
 }

@@ -51,4 +51,12 @@ public class AssessmentController {
 
     }
 
+
+    @ApiOperation(value = "查询是否有过问卷调查")
+    @GetMapping(value = "/getIsHaveAssessment")
+    public ResultDto<Integer> getIsHaveAssessment(Integer yhid) {
+        return assessmentService.getIsHaveAssessment(yhid);
+
+    }
+
 }

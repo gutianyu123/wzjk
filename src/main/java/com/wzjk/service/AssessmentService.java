@@ -16,4 +16,6 @@ public interface AssessmentService {
     public ResultDto<List<AssessmentResultResp>> getAssessmentResult(Integer yhid);
 
     public ResultDto<AssessmentResultResp> getAssessmentResultDetail(Integer id);
+
+    public ResultDto<Integer> getIsHaveAssessment(Integer yhid);
 }

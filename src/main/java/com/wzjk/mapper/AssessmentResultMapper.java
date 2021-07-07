@@ -20,4 +20,5 @@ public interface AssessmentResultMapper {
     int updateByPrimaryKey(AssessmentResult record);
 
     List<AssessmentResultResp> getAssessmentResult(@Param("yhid") Integer yhid);
+
 }
